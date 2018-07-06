@@ -72,6 +72,9 @@ autocmd BufEnter *.ino set filetype=c
 " useful for editing html or opening pdfs
 nnoremap <C-f> :!/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome %<CR>
 
+" insert timestamp
+nnoremap <F5> :pu=strftime('%c')<CR>
+
 " no idea what these are
 "nnoremap <C-k> :!/Applications/Spotify.app <CR>
 ":noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
