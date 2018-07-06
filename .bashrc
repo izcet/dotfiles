@@ -22,10 +22,11 @@ export PS1='\
 \[\e[0;32m\]\h\
 \[\e[0;30;1m\]:\
 \[\e[0;34m\]\w\
-\[\n\e[30;1m\]\\</\
+\[\n\e[30;1m\](\[\e[33m\]\$\
+\[\e[30;1m\])</\
 \[\e[1m`if (( "$?" )) ; then echo -e "\e[31m" ; else echo -e "\e[32m" ; fi`\]^\
-\[\e[0;30;1m\]\\>/\
-\[\e[33m\]\$\[\e[0m\] '
+\[\e[0;30;1m\]\\>\
+\[\e[0m\] '
 
 alias vb="vim ~/.bashrc"
 alias sb="source ~/.bashrc"
