@@ -19,9 +19,10 @@ GIT_COMMIT="${REPO_DIR}/git_commit.sh"
 GIT_PUSH="${REPO_DIR}/git_pu.sh"
 
 # colors
-BLU="\e[34m"
+RED="\e[31m"
 GRE="\e[32m"
 ORA="\e[33m"
+BLU="\e[34m"
 NOC="\e[0m"
 
 # for any debugging
@@ -48,6 +49,12 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         # if the line is not empty
         if [ -n "$line" ] ; then
             ( cp -rf "${HOME}/${line}" "${DEST}" &> "$LOG" )
+            if (( "$?" )) ; then
+                echo -e "${RED}x\c"
+            else
+                ecoh -e "${ORA}.\c"
+                : # asdf
+            fi
         fi
 
     done < "$LIST"
@@ -70,9 +77,9 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
 		echo "${BLU}Pushing to github... \c"
         ( $GIT_PUSH &> "$LOG" )
-        echo "$?"
-        (true)
-        echo "$?"
+        if (( "$?" )) ; then
+            echo -e "${RED}[!]\c"
+        fi
         echo "${GRE}Done${NOC}"
 	fi 
     )

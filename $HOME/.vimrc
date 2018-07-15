@@ -88,6 +88,7 @@ nnoremap <F5> :pu=strftime('%c')<CR>
 
 " remap j-f-j to escape for faster escapes
 inoremap `1 <Esc>
+inoremap qq <Esc>
 "inoremap <Esc> <Nop>
 
 " no idea what these are
