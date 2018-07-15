@@ -47,7 +47,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         
         # if the line is not empty
         if [ -n "$line" ] ; then
-            ( cp -rf "${HOME}/${line}" "${DEST}" 2>&1 >> "$LOG" )
+            ( cp -rf "${HOME}/${line}" "${DEST}" &> "$LOG" )
         fi
 
     done < "$LIST"
