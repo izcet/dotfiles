@@ -53,6 +53,17 @@ colorscheme pablo
 "colorscheme elflord " pretty good also
 "colorscheme ron " 42 mac default?
 
+" restore terminal contents on exit
+" https://forums.vandyke.com/showthread.php?t=3431
+"if &term =~ "xterm"
+    " SecureCRT versions prior to 6.1.x do not support 4-digit DECSET
+    "     let &t_ti = "\<Esc>[?1049h"
+    "     let &t_te = "\<Esc>[?1049l"
+    " Use 2-digit DECSET instead
+"    let &t_ti = "\<Esc>[?47h"
+"    let &t_te = "\<Esc>[?47l"
+"endif
+
 " TODO put these in a conditional for only the 42 machines
 "autocmd BufNewFile *.c execute "Stdheader"
 "autocmd BufNewFile *.h execute "Stdheader"
