@@ -36,7 +36,8 @@ if [ -n "$(which colordiff)" ] ; then
     alias diff="colordiff"
 fi
 
-BACKUP="$HOME/dotfiles/backup.sh"
+DOTFILES="$HOME/dotfiles"
+BACKUP="$DOTFILES/backup.sh"
 if [ -f "$BACKUP" ] ; then
     /bin/zsh "$BACKUP"
 fi

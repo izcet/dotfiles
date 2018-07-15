@@ -62,9 +62,9 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
 	if [ "`git status | wc -l | tr -d ' '`" -gt "3" ] ; then
 
-        MESSAGE="`$GIT_COMMIT "\`date\`"`"
+        MESSAGE="`$GIT_COMMIT`"
         echo -e "${ORA}${MESSAGE}"
-        ( git commit -m "$MESSAGE" 2>&1 >> "$LOG" )
+        ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
 
 		echo "${BLU}Pushing to github... \c"
         ( $GIT_PUSH &> "$LOG" )
