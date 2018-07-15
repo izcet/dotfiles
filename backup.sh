@@ -74,12 +74,12 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
             ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
         fi
 
-		echo "${BLU}Pushing to github... \c"
+		echo "${BLU}Pushing to github... ${GRE}\c"
         ( $GIT_PUSH &> "$LOG" )
         if (( $? )) ; then
             echo -e "${RED}[!] \c"
         fi
-        echo "${GRE}Done${NOC}"
+        echo "Done${NOC}"
 	fi 
     )
 
