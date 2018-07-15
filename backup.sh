@@ -67,7 +67,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         ( git commit -m "$MESSAGE" 2>&1 >> "$LOG" )
 
 		echo "${BLU}Pushing to github... \c"
-        ( $GIT_PUSH )
+        ( $GIT_PUSH &> "$LOG" )
         echo "${GRE}Done${NOC}"
 	fi 
     )
