@@ -52,8 +52,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
             if (( "$?" )) ; then
                 echo -e "${RED}x\c"
             else
-                ecoh -e "${ORA}.\c"
-                : # asdf
+                echo -e "${ORA}.\c"
             fi
         fi
 
