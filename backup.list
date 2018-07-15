@@ -11,7 +11,7 @@
 .gitconfig
 
 # custom
-.aliases
+.alias
 .bin
 .brew  # directory
 .env
