@@ -38,7 +38,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
     # clear any existing formatting
     echo -e "${NOC}\c"
-    echo -e "${BLU}Backing up dotfiles. Copying... \c"
+    echo -e "${BLU}Backing up dotfiles. Copying:\c"
 	
     # for each line in $LIST
     while read line ; do
