@@ -57,7 +57,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         fi
 
     done < "$LIST"
-    echo -e "${GRE}Done"
+    echo -e "${GRE} Done"
 
     # back up the files through git
     # i don't remember why I put this in a subshell but it works so I'll leave it alone
@@ -76,8 +76,8 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
 		echo "${BLU}Pushing to github... \c"
         ( $GIT_PUSH &> "$LOG" )
-        if (( "$?" )) ; then
-            echo -e "${RED}[!]\c"
+        if (( $? )) ; then
+            echo -e "${RED}[!] \c"
         fi
         echo "${GRE}Done${NOC}"
 	fi 
