@@ -1,0 +1,18 @@
+# shell rc
+.bashrc
+.profile
+.zshrc
+
+# vim
+.vim  # directory
+.vimrc
+
+# git
+.gitconfig
+
+# custom
+.aliases
+.bin
+.brew  # directory
+.env
+
