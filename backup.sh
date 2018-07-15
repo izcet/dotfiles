@@ -49,7 +49,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         # if the line is not empty
         if [ -n "$line" ] ; then
             ( cp -rf "${HOME}/${line}" "${DEST}" &> "$LOG" )
-            if (( "$?" )) ; then
+            if (( $? )) ; then
                 echo -e "${RED}x\c"
             else
                 echo -e "${ORA}.\c"
