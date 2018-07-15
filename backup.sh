@@ -63,7 +63,8 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 	if [ "`git status | wc -l | tr -d ' '`" -gt "3" ] ; then
 		echo -e "${ORA}\c"
 
-        git commit -m "`$GIT_COMMIT "\`date\`"`"
+        MESSAGE="`$GIT_COMMIT "\`date\`"`"
+        ( git commit -m "$MESSAGE" 2>&1 >> "$LOG" )
 
 		echo "${BLU}Pushing to github... \c"
         $GIT_PUSH
