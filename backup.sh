@@ -61,13 +61,13 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     git add .
 
 	if [ "`git status | wc -l | tr -d ' '`" -gt "3" ] ; then
-		echo -e "${ORA}\c"
 
         MESSAGE="`$GIT_COMMIT "\`date\`"`"
+        echo -e "${ORA}${MESSAGE}"
         ( git commit -m "$MESSAGE" 2>&1 >> "$LOG" )
 
 		echo "${BLU}Pushing to github... \c"
-        $GIT_PUSH
+        ( $GIT_PUSH )
         echo "${GRE}Done${NOC}"
 	fi 
     )
