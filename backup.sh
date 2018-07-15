@@ -71,6 +71,8 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 		echo "${BLU}Pushing to github... \c"
         ( $GIT_PUSH &> "$LOG" )
         echo "$?"
+        (/bin/true)
+        echo "$?"
         echo "${GRE}Done${NOC}"
 	fi 
     )
