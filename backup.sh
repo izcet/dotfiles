@@ -110,28 +110,27 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
             if [ "$DEBUG" = "0" ] ; then
                 ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
             fi
+            echo "${BLU}Pushing to git remotes:\c"
+            if [ "$DEBUG" = "0" ] ; then
+                # I use different branches for different computers/profiles
+                BRANCH="$(git branch | grep "^\*" | cut -c3-)"
+
+                # for each remote
+                git remote > $TEMP_FILE
+                while read line ; do
+
+                    # push to that remotes branch
+                    ( git push $line $BRANCH &> /dev/null )
+                    if (( $? )) ; then
+                        echo -e "${RED}x\c"
+                    else
+                        echo -e "${ORA}.\c"
+                    fi
+
+                done < $TEMP_FILE
+            fi
+            echo "${GRE}Done${NOC}"
         fi
-
-        echo "${BLU}Pushing to git remotes:\c"
-        if [ "$DEBUG" = "0" ] ; then
-            # I use different branches for different computers/profiles
-            BRANCH="$(git branch | grep "^\*" | cut -c3-)"
-
-            # for each remote
-            git remote > $TEMP_FILE
-            while read line ; do
-
-                # push to that remotes branch
-                ( git push $line $BRANCH &> /dev/null )
-                if (( $? )) ; then
-                    echo -e "${RED}x\c"
-                else
-                    echo -e "${ORA}.\c"
-                fi
-
-            done < $TEMP_FILE
-        fi
-        echo "${GRE}Done${NOC}"
     fi 
     )
 
