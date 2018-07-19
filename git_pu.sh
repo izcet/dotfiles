@@ -2,6 +2,7 @@
 
 # I use different branches for different computers/profiles
 BRANCH="$(git branch | grep "^\*" | cut -c3-)"
+TEMP_FILE="`whoami`_git_`date | base64`.tmp"
 
 function on_exit {
     rm -rf $TEMP_FILE
