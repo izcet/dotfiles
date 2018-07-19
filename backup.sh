@@ -40,17 +40,17 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     # clear any existing formatting
     echo -e "${NOC}\c"
     echo -e "${BLU}Backing up dotfiles. Copying:\c"
-	
+
     # for each line in $LIST
     while read line ; do
 
         # strip out comments
         # files cannot have spaces in the name, whatsoever
         line="`echo \"$line\" | cut -d'#' -f1 | cut -d' ' -f1`"
-        
+
         # if the line is not empty
         if [ -n "$line" ] ; then
-             cp -Rf "${HOME}/${line}" "${DEST}/${line}" #2&>1 >> "$LOG" 
+            cp -Rf "${HOME}/${line}" "${DEST}/\$HOME/${line}" #2&>1 >> "$LOG" 
             if (( $? )) ; then
                 echo -e "${RED}x\c"
             else
@@ -59,16 +59,16 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         fi
 
     done < "$LIST"
-    echo -e "${GRE} Done"
+    echo -e "${GRE}Done"
 
     # back up the files through git
     # i don't remember why I put this in a subshell but it works so I'll leave it alone
-	
+
     cd "$REPO_DIR"
     (
     git add .
 
-	if [ "`git status | wc -l | tr -d ' '`" -gt "3" ] ; then
+    if [ "`git status | wc -l | tr -d ' '`" -gt "3" ] ; then
 
         MESSAGE="`$GIT_COMMIT`"
         if [ -n "$MESSAGE" ] ; then
@@ -78,15 +78,17 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
             fi
         fi
 
-		echo "${BLU}Pushing to github... \c"
+        echo "${BLU}Pushing to github:\c"
         if [ "$DEBUG" = "0" ] ; then
             ( $GIT_PUSH 2>&1 >> "$LOG" )
-        fi
-        if (( $? )) ; then
-            echo -e "${RED}[!] \c"
+            if (( $? )) ; then
+                echo -e "${RED}x\c"
+            else
+                echo -e "${ORA}.\c"
+            fi
         fi
         echo "${GRE}Done${NOC}"
-	fi 
+    fi 
     )
     if [ "$DEBUG" = "0" ] ; then
         rm "$LOG"
