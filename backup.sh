@@ -62,14 +62,33 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
         # if the line is not empty
         if [ -n "$line" ] ; then
-            ( cp -Rf "${HOME}/${line}" "${DEST}/${line}" 2&>1 >> "$LOG" )
+
+            OLD="${DEST}/${line}"
+            NEW="${HOME}/${line}"
+            ( diff "$OLD" "$NEW" &> /dev/null )
+
+            # if the files differ
             if (( $? )) ; then
-                echo -e "${RED}x\c"
+
+                # overwrite the old one
+                ( cp -Rf "$NEW" "$OLD" 2&>1 >> "$LOG" )
+
+                # if there was an error during the copy
+                if (( $? )) ; then
+                    echo -e "${RED}x\c"
+                else
+                    echo -e "${ORA}.\c"
+                fi
+
+                # if we're in debug, print the result of the last command
+                if [ "$DEBUG" = "1" ] ;  then
+                    tail -n 1 "$LOG"
+                fi
+
+
             else
-                echo -e "${ORA}.\c"
-            fi
-            if [ "$DEBUG" = "1" ] ;  then
-                tail -n 1 "$LOG"
+                # no difference
+                echo -e "${CYA}.\c"
             fi
         fi
 
@@ -115,6 +134,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         echo "${GRE}Done${NOC}"
     fi 
     )
+
     if [ "$DEBUG" = "0" ] ; then
         rm -rf "$LOG"
     fi
