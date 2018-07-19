@@ -29,6 +29,20 @@ NOC="\e[0m"
 LOG="/tmp/`whoami`-backup-`date | base64`.log"
 DEBUG=0
 
+# I use different branches for different computers/profiles
+BRANCH="$(git branch | grep "^\*" | cut -c3-)"
+TEMP_FILE="`whoami`_git_`date | base64`.tmp"
+
+
+################################################################################
+# FUNCTIONS
+
+function on_exit {
+    rm -rf $TEMP_FILE
+}
+trap on_exit EXIT
+
+
 ################################################################################
 # BODY
 
@@ -83,12 +97,21 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
         echo "${BLU}Pushing to git remotes:\c"
         if [ "$DEBUG" = "0" ] ; then
-            ( $GIT_PUSH 2>&1 >> "$LOG" )
-            if (( $? )) ; then
-                echo -e "${RED}x\c"
-            else
-                echo -e "${ORA}.\c"
-            fi
+
+            # for each remote
+            git remote > $TEMP_FILE
+            while read line ; do
+
+                # push to that remotes branch
+                ( git push $line $BRANCH 2>&1 > /dev/null )
+                if (( $? )) ; then
+                    echo -e "${RED}x\c"
+                else
+                    echo -e "${ORA}.\c"
+                fi
+
+            done < $TEMP_FILE
+            #( $GIT_PUSH 2>&1 >> "$LOG" )
         fi
         echo "${GRE}Done${NOC}"
     fi 
