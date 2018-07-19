@@ -29,8 +29,6 @@ NOC="\e[0m"
 LOG="/tmp/`whoami`-backup-`date | base64`.log"
 DEBUG=0
 
-# I use different branches for different computers/profiles
-BRANCH="$(git branch | grep "^\*" | cut -c3-)"
 TEMP_FILE="/tmp/`whoami`_git_`date | base64`.tmp"
 
 
@@ -97,6 +95,8 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
         echo "${BLU}Pushing to git remotes:\c"
         if [ "$DEBUG" = "0" ] ; then
+            # I use different branches for different computers/profiles
+            BRANCH="$(git branch | grep "^\*" | cut -c3-)"
 
             # for each remote
             git remote > $TEMP_FILE
@@ -111,7 +111,6 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
                 fi
 
             done < $TEMP_FILE
-            #( $GIT_PUSH 2>&1 >> "$LOG" )
         fi
         echo "${GRE}Done${NOC}"
     fi 
