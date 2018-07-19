@@ -65,6 +65,9 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
             OLD="${DEST}/${line}"
             NEW="${HOME}/${line}"
+ 
+            # TODO insert code to check directories using diff <(ls) <(ls) rather than as files
+
             ( diff "$OLD" "$NEW" &> /dev/null )
 
             # if the files differ
