@@ -57,7 +57,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     while read line ; do
 
         # strip out comments
-        # files cannot have spaces in the name, whatsoever
+        # files cannot have spaces in the name, or this will break them
         line="`echo \"$line\" | cut -d'#' -f1 | cut -d' ' -f1`"
 
         # if the line is not empty
