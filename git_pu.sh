@@ -14,6 +14,6 @@ git remote > $TEMP_FILE
 while read line ; do
     
     # push to that remotes branch
-    ( git push $line $BRANCH )
+    ( git push $line $BRANCH 2>&1 > /dev/null )
 
 done < $TEMP_FILE
