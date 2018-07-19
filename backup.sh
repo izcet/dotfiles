@@ -103,7 +103,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
             while read line ; do
 
                 # push to that remotes branch
-                ( git push $line $BRANCH 2>&1 > /dev/null )
+                ( git push $line $BRANCH &> /dev/null )
                 if (( $? )) ; then
                     echo -e "${RED}x\c"
                 else
