@@ -75,7 +75,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         fi
 
 		echo "${BLU}Pushing to github... \c"
-        ( $GIT_PUSH &> "$LOG" )
+        ( $GIT_PUSH 2>&1 >> "$LOG" )
         if (( $? )) ; then
             echo -e "${RED}[!] \c"
         fi
