@@ -31,7 +31,7 @@ DEBUG=0
 
 # I use different branches for different computers/profiles
 BRANCH="$(git branch | grep "^\*" | cut -c3-)"
-TEMP_FILE="`whoami`_git_`date | base64`.tmp"
+TEMP_FILE="/tmp/`whoami`_git_`date | base64`.tmp"
 
 
 ################################################################################
@@ -117,7 +117,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     fi 
     )
     if [ "$DEBUG" = "0" ] ; then
-        rm "$LOG"
+        rm -rf "$LOG"
     fi
     cd "$LAUNCHED"
 fi
