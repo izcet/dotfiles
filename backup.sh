@@ -50,11 +50,14 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
         # if the line is not empty
         if [ -n "$line" ] ; then
-            cp -Rf "${HOME}/${line}" "${DEST}/\$HOME/${line}" #2&>1 >> "$LOG" 
+            ( cp -Rf "${HOME}/${line}" "${DEST}/${line}" 2&>1 >> "$LOG" )
             if (( $? )) ; then
                 echo -e "${RED}x\c"
             else
                 echo -e "${ORA}.\c"
+            fi
+            if [ "$DEBUG" = "1" ] ;  then
+                tail -n 1 "$LOG"
             fi
         fi
 
@@ -78,7 +81,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
             fi
         fi
 
-        echo "${BLU}Pushing to github:\c"
+        echo "${BLU}Pushing to git remotes:\c"
         if [ "$DEBUG" = "0" ] ; then
             ( $GIT_PUSH 2>&1 >> "$LOG" )
             if (( $? )) ; then
