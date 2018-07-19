@@ -48,7 +48,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         
         # if the line is not empty
         if [ -n "$line" ] ; then
-            ( cp -rf "${HOME}/${line}" "${DEST}" &> "$LOG" )
+             cp -rf "${HOME}/${line}" "${DEST}" &> "$LOG" 
             if (( $? )) ; then
                 echo -e "${RED}x\c"
             else
