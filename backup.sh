@@ -27,6 +27,7 @@ NOC="\e[0m"
 
 # for any debugging
 LOG="/tmp/`whoami`-backup-`date | base64`.log"
+DEBUG=0
 
 ################################################################################
 # BODY
@@ -44,11 +45,12 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     while read line ; do
 
         # strip out comments
-        line="`echo \"$line\" | cut -d'#' -f1`"
+        # files cannot have spaces in the name, whatsoever
+        line="`echo \"$line\" | cut -d'#' -f1 | cut -d' ' -f1`"
         
         # if the line is not empty
         if [ -n "$line" ] ; then
-             cp -rf "${HOME}/${line}" "${DEST}" 2&>1 >> "$LOG" 
+             cp -Rf "${HOME}/${line}" "${DEST}/${line}" #2&>1 >> "$LOG" 
             if (( $? )) ; then
                 echo -e "${RED}x\c"
             else
@@ -71,18 +73,24 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
         MESSAGE="`$GIT_COMMIT`"
         if [ -n "$MESSAGE" ] ; then
             echo -e "${ORA}${MESSAGE}"
-            ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
+            if [ "$DEBUG" = "0" ] ; then
+                ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
+            fi
         fi
 
 		echo "${BLU}Pushing to github... \c"
-        ( $GIT_PUSH 2>&1 >> "$LOG" )
+        if [ "$DEBUG" = "0" ] ; then
+            ( $GIT_PUSH 2>&1 >> "$LOG" )
+        fi
         if (( $? )) ; then
             echo -e "${RED}[!] \c"
         fi
         echo "${GRE}Done${NOC}"
 	fi 
     )
-
+    if [ "$DEBUG" = "0" ] ; then
+        rm "$LOG"
+    fi
     cd "$LAUNCHED"
 fi
 
