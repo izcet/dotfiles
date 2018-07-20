@@ -65,7 +65,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
             OLD="${DEST}/${LINE}"
             NEW="${HOME}/${LINE}"
- 
+
             # TODO insert code to check directories using diff <(ls) <(ls) rather than as files
 
             ( diff "$OLD" "$NEW" &> /dev/null )
@@ -74,7 +74,12 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
             if (( $? )) ; then
 
                 # overwrite the old one
-                ( cp -Rf "$NEW" "$OLD" 2>&1 >> "$LOG" )
+                if [ -d "$NEW" ] ; then
+                    ( cp -rf "$NEW/*" "$OLD" 2>&1 >> "$LOG" )
+                else
+                    ( cp -rf "$NEW" "$OLD" 2>&1 >> "$LOG" )
+                fi
+
 
                 # if there was an error during the copy
                 if (( $? )) ; then
