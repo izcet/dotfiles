@@ -87,7 +87,7 @@ nnoremap <C-f> :!/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome 
 nnoremap <F5> :pu=strftime('%c')<CR>
 
 " remap j-f-j to escape for faster escapes
-inoremap `1 <Esc>
+"inoremap `1 <Esc>
 inoremap qq <Esc>
 "inoremap <Esc> <Nop>
 

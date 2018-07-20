@@ -1,0 +1,67 @@
+#!/bin/bash
+
+################################################################################
+# error checking
+
+if [ "$#" -ne "1" ] ; then
+	echo "Usage: $0 <list to remove duplicates from>"
+	exit
+fi
+
+if [ -d "$1" ] ; then
+    echo "Error: cannot de-dup directory '$1'"
+    exit 1
+fi
+
+
+################################################################################
+# variables
+
+TEMP="/tmp/.`echo \"$1\" | base64`_dupes"
+STRIPPED="$1_stripped"
+
+STRIP_FUNC="stripfrom"
+if [ -z "`which \"$STRIP_FUNC\"`" ] ; then
+    
+    THIS_DIR="`dirname \"$0\"`"
+    TARG_FUNC="${THIS_DIR}/${STRIP_FUNC}"
+    
+    if [ ! -f "$TARG_FUNC" ] ; then
+        echo "Error: unable to find exec or function '$STRIP_FUNC'"
+        exit 1
+    fi
+    
+    STRIP_FUNC="$TARG_FUNC"
+fi
+
+
+################################################################################
+# functions
+
+function on_exit {
+    rm -rf "$TEMP"
+}
+trap on_exit EXIT
+
+
+################################################################################
+# logic
+
+sort "$1" | uniq -d > "$TEMP"
+# right here we've identified the duplicate songs
+# they are in unsorted order in the original playlist,
+# sorted order in the second
+# (where sorting is by song link, not title/artist/album/etc)
+
+# what I _want_ to do is remove all duplicates of a song
+# by keeping the first instance, and removing all following ones
+
+# FIXME
+# this just removes all copies of the songs from the original
+"$STRIP_FUNC" "$TEMP" "$1"
+# this appends the removed songs to the end of the playlist,
+# which disrupts the original order of the playlist
+cat "$TEMP" >> "$STRIPPED"
+# this would overwrite the original playlist
+# with the newly created de-duplicated version
+#mv $STRIPPED $1

@@ -1,0 +1,48 @@
+#!/bin/bash
+
+################################################################################
+# error checking
+if [ "$#" -ne "1" ] ; then
+	echo "Usage: $0 <playlist>"
+	exit 0
+fi
+
+if [ -d "$1" ] ; then
+    echo "Cannot get status of directory '$1'"
+    exit 1
+fi
+
+
+################################################################################
+# functions
+
+function get_number_echo () {
+	echo "$( echo "$1" | wc -l | sed -E 's/ *([0-9]+).*/\1/' )"
+}
+
+function get_number_file () {
+	echo "$( wc -l "$1" | sed -E 's/ *([0-9]+).*/\1/' )"
+}
+
+# the main logic is actually here
+function playlist_data () {
+	local PLAYLIST="$1"
+	local LINE="$( get_number_file "$PLAYLIST" )"
+	local UNIQ="$( get_number_echo "$( sort "$PLAYLIST" | uniq )" )"
+
+	echo "$PLAYLIST: $LINE lines, $UNIQ unique"
+}
+
+
+################################################################################
+# variables
+
+FILE="$1"
+
+
+################################################################################
+# logic
+
+playlist_data "$FILE"
+
+

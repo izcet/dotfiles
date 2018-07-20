@@ -1,0 +1,47 @@
+#!/bin/bash
+
+################################################################################
+# error checking
+
+if [ "$#" -ne "1" ] ; then
+	echo "Usage: $0 <playlist>"
+	exit 0
+fi
+
+if [ -d "$1" ] ; then
+    echo "Cannot update directory '$1'"
+    exit 1
+fi
+
+
+################################################################################
+# variables
+
+STAT_FUNC="playlistat"
+if [ -z "`which \"$STAT_FUNC\"`" ] ; then
+
+    THIS_DIR="`dirname \"$0\"`"
+    TARG_FUNC="${THIS_DIR}/${STAT_FUNC}"
+
+    if [ ! -f "$TARG_FUNC" ] ; then
+        echo "Error: unable to find exec or function '$STRIP_FUNC'"
+        exit 1
+    fi
+
+    STAT_FUNC="$TARG_FUNC"
+fi
+
+FILE=$1
+
+
+################################################################################
+# logic
+
+if [ -f "$FILE" ] ; then
+	echo "Old `\"$STAT_FUNC\" \"$FILE\"`"
+fi
+
+pbpaste > "$FILE"
+echo "" >> "$FILE"
+echo "New `\"$STAT_FUNC\" \"$FILE\"`"
+

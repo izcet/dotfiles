@@ -99,7 +99,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     echo -e "${GRE}Done"
 
     # back up the files through git
-    # i don't remember why I put this in a subshell but it works so I'll leave it alone
+    # I don't remember why I put this in a subshell but it works so I'll leave it alone
 
     cd "$REPO_DIR"
     (
