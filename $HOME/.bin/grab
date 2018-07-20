@@ -14,4 +14,4 @@ fi
 # FIXME
 # this only works on macos, I need a linux compatible variant
 cat "$1" | pbcopy
-echo "Grabbed '$1'
+echo "Grabbed '$1'"
