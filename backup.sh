@@ -27,7 +27,7 @@ NOC="\e[0m"
 
 # for any debugging
 LOG="/tmp/`whoami`-backup-`date | base64`.log"
-DEBUG=0
+DEBUG="0"
 
 TEMP_FILE="/tmp/`whoami`_git_`date | base64`.tmp"
 
@@ -36,7 +36,7 @@ TEMP_FILE="/tmp/`whoami`_git_`date | base64`.tmp"
 # FUNCTIONS
 
 function on_exit {
-    rm -rf $TEMP_FILE
+    rm -rf "$TEMP_FILE"
 }
 trap on_exit EXIT
 
@@ -58,13 +58,13 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
         # strip out comments
         # files cannot have spaces in the name, or this will break them
-        line="`echo \"$line\" | cut -d'#' -f1 | cut -d' ' -f1`"
+        LINE="`echo \"$line\" | cut -d'#' -f1 | cut -d' ' -f1`"
 
         # if the line is not empty
-        if [ -n "$line" ] ; then
+        if [ -n "$LINE" ] ; then
 
-            OLD="${DEST}/${line}"
-            NEW="${HOME}/${line}"
+            OLD="${DEST}/${LINE}"
+            NEW="${HOME}/${LINE}"
  
             # TODO insert code to check directories using diff <(ls) <(ls) rather than as files
 
@@ -74,7 +74,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
             if (( $? )) ; then
 
                 # overwrite the old one
-                ( cp -Rf "$NEW" "$OLD" 2&>1 >> "$LOG" )
+                ( cp -Rf "$NEW" "$OLD" 2>&1 >> "$LOG" )
 
                 # if there was an error during the copy
                 if (( $? )) ; then

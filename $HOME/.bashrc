@@ -11,7 +11,7 @@ fi
 # Author: Isaac Rhett
 # Repo: https://github.com/izcet/gitpushplus
 
-export GPP_DIR=/Users/isaac.rhett/.gpp_resources/
+export GPP_DIR='/Users/isaac.rhett/.gpp_resources/'
 export GPP_GREEN='[0;32m'
 export GPP_BLUE='[0;34m'
 export GPP_PURPLE='[0;35m'
