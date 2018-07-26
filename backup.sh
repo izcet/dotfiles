@@ -115,14 +115,14 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
             # if this is live, push it to git each remote/{current branch}
             if [ "$DEBUG" = "0" ] ; then
-               
-                ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
-                echo "${BLU}Pushing to git remotes:\c"
-
+            
                 # I use different branches for different computers/profiles
                 BRANCH="$(git branch | grep "^\*" | cut -c3-)"
+   
+                ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
+                echo "${BLU}Pushing to git remotes/${BRANCH}:\c"
 
-                # for each remote
+                           # for each remote
                 git remote > $TEMP_FILE
 
                 while read line ; do
