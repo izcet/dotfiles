@@ -120,7 +120,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
                 BRANCH="$(git branch | grep "^\*" | cut -c3-)"
               
                 ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
-                echo "${BLU}Pushing to git remote/${BRANCH}:\c"
+                echo "${BLU}Pushing to git remotes/${BRANCH}:\c"
 
                 # for each remote
                 git remote > $TEMP_FILE
