@@ -106,18 +106,25 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     if [ "`git status | wc -l | tr -d ' '`" -gt "3" ] ; then
 
         MESSAGE="`$GIT_COMMIT`"
+
+        # if the message is non-null, aka there were changes to commit
         if [ -n "$MESSAGE" ] ; then
+
+            # print the message to the user
             echo -e "${ORA}${MESSAGE}"
+
+            # if this is live, push it to git each remote/{current branch}
             if [ "$DEBUG" = "0" ] ; then
+               
                 ( git commit -m "Automated commit of $MESSAGE" 2>&1 >> "$LOG" )
-            fi
-            echo "${BLU}Pushing to git remotes:\c"
-            if [ "$DEBUG" = "0" ] ; then
+                echo "${BLU}Pushing to git remotes:\c"
+
                 # I use different branches for different computers/profiles
                 BRANCH="$(git branch | grep "^\*" | cut -c3-)"
 
                 # for each remote
                 git remote > $TEMP_FILE
+
                 while read line ; do
 
                     # push to that remotes branch
@@ -135,9 +142,12 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     fi 
     )
 
+    # keep the log files from sticking around unless we're in debug mode
     if [ "$DEBUG" = "0" ] ; then
         rm -rf "$LOG"
     fi
+
+    # return home
     cd "$LAUNCHED"
 fi
 

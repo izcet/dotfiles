@@ -15,4 +15,5 @@
 .bin
 .brew  # directory
 .env
+.gpp_resources  # directory
 
