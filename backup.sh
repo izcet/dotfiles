@@ -51,7 +51,7 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
     # clear any existing formatting
     echo -e "${NOC}\c"
-    echo -e "${BLU}Backing up dotfiles. Copying:\c"
+    echo -e "${BLU}Backing up dotfiles:\c"
 
     # for each line in $LIST
     while read line ; do
@@ -65,9 +65,6 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
             OLD="${DEST}/${LINE}"
             NEW="${HOME}/${LINE}"
-
-            # TODO insert code to check directories using diff <(ls) <(ls) rather than as files
-
             ( diff "$OLD" "$NEW" &> /dev/null )
 
             # if the files differ
@@ -79,7 +76,6 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
                 else
                     ( cp -rf "$NEW" "$OLD" 2>&1 >> "$LOG" )
                 fi
-
 
                 # if there was an error during the copy
                 if (( $? )) ; then
@@ -93,7 +89,6 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
                     tail -n 1 "$LOG"
                 fi
 
-
             else
                 # no difference
                 echo -e "${CYA}.\c"
@@ -104,8 +99,6 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
     echo -e "${GRE}Done"
 
     # back up the files through git
-    # I don't remember why I put this in a subshell but it works so I'll leave it alone
-
     cd "$REPO_DIR"
     (
     git add .
