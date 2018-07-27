@@ -27,6 +27,6 @@ alias cdc="cd ; clear"
 alias ll="ls -la"
 
 # custom commands
-alias init_project=". $HOME/personal/environ_setup/init_project.sh"
+alias init_project="$HOME/personal/environ_setup/init_project.sh"
 
 
