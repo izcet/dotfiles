@@ -42,13 +42,12 @@ STRIPPED="${FILE}_stripped"
 
 ################################################################################
 # logic
-
+# FIXME logic when used as part of another script
 echo "Original `\"$STAT_FUNC\" \"$FILE\"`"
 echo "Removing `\"$STAT_FUNC\" \"$STRIP\"`"
 
 grep -v -f "${STRIP}" "${FILE}" > "${STRIPPED}"
 
-mv "${STRIPPED}" "${FILE}"
-
-echo "Final `\"$STAT_FUNC\" \"$FILE\"`"
+# mv "${STRIPPED}" "${FILE}"
+# echo "Final `\"$STAT_FUNC\" \"$FILE\"`"
 
