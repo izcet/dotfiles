@@ -6,8 +6,8 @@
 filetype off
 filetype plugin indent on
 set smartindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 "set noexpandtab
 set nocompatible
 set encoding=utf-8
