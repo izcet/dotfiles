@@ -46,7 +46,7 @@ set comments=sl:/*,mb:\ *,elx:\ */
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set mouse=a
 set nospell
-set wrap
+set nowrap
 set textwidth=0 wrapmargin=0
 
 colorscheme pablo
