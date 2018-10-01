@@ -23,6 +23,7 @@ alias vi="vim"
 alias ivm="vim"
 
 # shell hacks
+alias env="env | cat -e"
 alias cdc="cd ; clear"
 alias ll="ls -la"
 
