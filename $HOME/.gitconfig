@@ -9,7 +9,5 @@
 [user]
 	email = isaac.rhett@lookout.com
 	name = Isaac Rhett
-#[alias]
-#	root = rev-parse --show-toplevel
 [alias]
 	root = rev-parse --show-toplevel
