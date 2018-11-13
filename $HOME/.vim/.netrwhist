@@ -1,6 +1,2 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/isaac.rhett/Desktop/dumps/broken_apk/res/values-ko'
-let g:netrw_dirhist_2='/Users/isaac.rhett/Desktop/dumps/youtube_apk/unzipped_by_me/res'
-let g:netrw_dirhist_3='/usr/local/etc/nginx'
-let g:netrw_dirhist_4='/Users/isaac.rhett/.aws'
