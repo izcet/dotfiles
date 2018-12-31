@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # simple colorizations
-alias ls="ls -G"
-alias grep="grep --color=auto"
+#alias ls="ls -G"
+alias grep="grep --color=always"
 if [ -n "$(which colordiff)" ] ; then
     alias diff="colordiff"
 fi
