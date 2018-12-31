@@ -1,8 +1,6 @@
 
 GPP_EDITOR=vim
 
-alias gi="$GPP_EDITOR .gitignore"
-
 function gp () {
     BRANCH="$(git branch | grep "^\*" | cut -c3-)"
     if [ $# != 0 ] ; then
@@ -25,12 +23,11 @@ function gp () {
 }
 
 alias gu="git pull"
-alias gd="git diff"
 alias gs="git status"
 alias ga="git add ."
 
 function gc () {
-	git commit -m "$(/Users/isaac.rhett/.gpp_resources/commit_script.sh $@)"
+	git commit -m "$(/home/izcet/.gpp_resources/commit_script.sh $@)"
 }
 
 function gall () {

@@ -11,9 +11,8 @@
 .gitconfig
 
 # custom
-.alias
+.bash_aliases
 .bin
-.brew  # directory
 .env
 .gpp_resources  # directory
 
