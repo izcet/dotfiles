@@ -72,9 +72,9 @@ if [ "$LAUNCHED" = "$HOME" ] ; then
 
                 # overwrite the old one
                 if [ -d "$NEW" ] ; then
-                    ( cp -rf "$NEW" "$DEST" 2>&1 >> "$LOG" )
+                    ( cp -rf "$NEW" "$DEST" 2> "$LOG" >> "$LOG" )
                 else
-                    ( cp -rf "$NEW" "$OLD" 2>&1 >> "$LOG" )
+                    ( cp -rf "$NEW" "$OLD" 2> "$LOG" >> "$LOG" )
                 fi
 
                 # if there was an error during the copy
