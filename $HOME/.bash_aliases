@@ -26,3 +26,7 @@ alias ivm="vim"
 alias cdc="cd ; clear"
 alias ll="ls -la"
 
+# I'm gross and not worthy of life
+alias npm="nodejs"
+alias jsc="nodejs"
+
