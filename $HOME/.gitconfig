@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /home/izcet/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [user]
 	email = isaacjrhett@gmail.com
 	name = Isaac Rhett
