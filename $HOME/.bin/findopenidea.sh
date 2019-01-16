@@ -1,4 +1,5 @@
 #!/bin/bash
+# [WIP]
 
 if [ "$#" -ne "2" ] ; then
   echo "Usage: $0 <search directory> <regex pattern>"
@@ -18,3 +19,4 @@ function realpath () {
 
 REAL_FILES="$(realpath $ALL_FILES )"
 echo $REAL_FILES
+
