@@ -4,7 +4,7 @@
 #alias ls="ls -G"
 alias grep="grep --color=always"
 if [ -n "$(which colordiff)" ] ; then
-    alias diff="colordiff"
+	alias diff="colordiff"
 fi
 
 # .bashrc
@@ -29,4 +29,12 @@ alias ll="ls -la"
 # I'm gross and not worthy of life
 alias npm="nodejs"
 alias jsc="nodejs"
+
+# xclip can read/write from/to standard input/output and files
+#alias pbcopy='xclip -selection clipboard'
+#alias pbpaste='xclip -selection clipboard -o'
+
+# xsel can only read/write from/to standard input/output
+alias pbcopy='xsel --clipboard --input'
+alias pbpaste='xsel --clipboard --output'
 
