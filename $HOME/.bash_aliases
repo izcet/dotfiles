@@ -38,3 +38,5 @@ alias jsc="nodejs"
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
+
+alias fsource="type -a"
