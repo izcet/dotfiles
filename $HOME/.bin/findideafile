@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ "$#" -ne "2" ] ; then
+  echo "Usage: $0 <search directory> <filename regex pattern>"
+  exit 0
+fi
+
+TARGET_SEARCH_DIR="$1"
+TARGET_SEARCH_REX="$2"
+
+ALL_FILES="$(find "$TARGET_SEARCH_DIR" -name "$TARGET_SEARCH_REX")"
+echo $ALL_FILES
+
+function realpath () {
+  while [ "$#" -gt "0" ] ; do
+    TARGET="$1"
+    echo -e "$(cd "$(dirname "$TARGET")"; pwd -P)/$(basename "$TARGET")"
+    shift
+  done
+}
+
+realpath $ALL_FILES | xargs -I % idea %
+

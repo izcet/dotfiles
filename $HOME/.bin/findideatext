@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [ "$#" -ne "3" ] ; then
+  echo "Usage: $0 <search directory> <file regex pattern> <text regex pattern>"
+  exit 0
+fi
+
+SEARCH_DIR="$1"
+FILE_REGEX="$2"
+TEXT_REGEX="$3"
+
+function realpath () {
+  while [ "$#" -gt "0" ] ; do
+    TARGET="$1"
+    echo -e "$(cd "$(dirname "$TARGET")"; pwd -P)/$(basename "$TARGET")"
+    shift
+  done
+}
+
+function has_text() {
+  FILE="$1"
+  TEXT="$2"
+  if [ -n "$(grep "$TEXT" "$FILE")" ] ; then
+    idea "$FILE"
+  fi
+} 
+
+ALL_FILES="$(find "$SEARCH_DIR" -name "$FILE_REGEX")"
+
+export -f has_text
+realpath $ALL_FILES | xargs -I % bash -c 'has_text "'%'" "'$TEXT_REGEX'"'
+
