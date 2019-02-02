@@ -79,6 +79,9 @@ colorscheme pablo
 "autocmd BufEnter *.php set filetype=html
 autocmd BufEnter *.ino set filetype=c
 
+" for editing files in ~/.bin
+autocmd BufEnter /home/izcet/.bin/* set filetype=sh
+
 " browser preview files in chrome on MacOS with ctrl-f
 " useful for editing html or opening pdfs
 nnoremap <C-f> :!/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome %<CR>
