@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# because fuck the guys who maintain gnome-screenshot
+# https://cialu.net/how-to-change-default-gnome-screenshot-savings-folder/
+# https://bugzilla.gnome.org/show_bug.cgi?id=699642#c15
+
+PREFIX="Screenshot-full"
+TIME="$(date | sed -s 's/\s*//g')"
+DIR=~/Pictures/linux-screenshots
+FILE="${PREFIX}-${TIME}.png"
+FLAGS="--file ${DIR}/${FILE}"
+
+gnome-screenshot $FLAGS 2>&1 >> /home/izcet/Pictures/asdf.txt
+

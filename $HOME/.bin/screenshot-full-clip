@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# because fuck the guys who maintain gnome-screenshot
+# https://cialu.net/how-to-change-default-gnome-screenshot-savings-folder/
+# https://bugzilla.gnome.org/show_bug.cgi?id=699642#c15
+
+FLAGS="--clipboard"
+
+gnome-screenshot $FLAGS
+
