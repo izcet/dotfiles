@@ -9,6 +9,7 @@ if [ -f "$BACKUP" ] ; then
     /bin/zsh "$BACKUP"
 fi
 
+
 # Git Push Plus
 # Author: Isaac Rhett
 # Repo: https://github.com/izcet/gitpushplus

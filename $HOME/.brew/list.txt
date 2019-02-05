@@ -1,0 +1,5 @@
+colordiff
+htop
+jq
+tree
+watch
