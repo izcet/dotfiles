@@ -6,9 +6,10 @@
 
 PREFIX="Screenshot-window"
 TIME="$(date | sed -s 's/\s*//g')"
-DIR=~/Pictures/linux-screenshots
+DIR=~/linux-screenshots
 FILE="${PREFIX}-${TIME}.png"
 FLAGS="--window --file ${DIR}/${FILE}"
 
+mkdir -p $DIR
 gnome-screenshot $FLAGS
 

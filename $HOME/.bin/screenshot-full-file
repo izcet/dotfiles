@@ -6,9 +6,10 @@
 
 PREFIX="Screenshot-full"
 TIME="$(date | sed -s 's/\s*//g')"
-DIR=~/Pictures/linux-screenshots
+DIR=~linux-screenshots
 FILE="${PREFIX}-${TIME}.png"
 FLAGS="--file ${DIR}/${FILE}"
 
+mkdir -p $DIR
 gnome-screenshot $FLAGS 2>&1 >> /home/izcet/Pictures/asdf.txt
 
