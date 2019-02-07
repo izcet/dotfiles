@@ -1,4 +1,6 @@
 colordiff
+dpkg
+fakeroot
 htop
 jq
 tree
