@@ -1,4 +1,5 @@
 #!/bin/bash
+#[WIP]
 
 # -- -- -- -- -- -- variables  -- -- -- -- -- -- #
 REPO=""
@@ -7,14 +8,24 @@ CHANGE=""
 
 
 # -- -- -- -- -- -- functions  -- -- -- -- -- -- #
+function swallow_exec () {
+  local COMMAND
+  local OUTPUT
+  local RETURN
+  COMMAND="$1"
+  OUTPUT="$($COMMAND 2>&1)"
+  RETURN="$?"
+
+  echo "$OUTPUT"
+  return $RETURN
+}
 
 
 # -- -- -- -- -- -- err check  -- -- -- -- -- -- #
-
-(git status 2> /dev/null)
-
-if (( $? )) ; then
-  echo "Not a git repository"
+MSG="$(swallow_exec "git status")"
+ERR="$?"
+if (( $ERR )) ; then
+  echo "$MSG"
   exit 1
 fi
 
