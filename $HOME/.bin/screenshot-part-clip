@@ -4,7 +4,12 @@
 # https://cialu.net/how-to-change-default-gnome-screenshot-savings-folder/
 # https://bugzilla.gnome.org/show_bug.cgi?id=699642#c15
 
-FLAGS="--area --clipboard"
+FILE="0"
+FLAG="--area --clipboard"
+PREF=""
 
-gnome-screenshot $FLAGS
+HERE="$( cd "$(dirname "$0")" ; pwd -P )"
+EXEC=".screenshot_core"
+
+$HERE/$EXEC "$FILE" "$FLAG" "$PREF"
 

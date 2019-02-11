@@ -4,12 +4,12 @@
 # https://cialu.net/how-to-change-default-gnome-screenshot-savings-folder/
 # https://bugzilla.gnome.org/show_bug.cgi?id=699642#c15
 
-PREFIX="Screenshot-window"
-TIME="$(date | sed -s 's/\s*//g')"
-DIR=~/linux-screenshots
-FILE="${PREFIX}-${TIME}.png"
-FLAGS="--window --file ${DIR}/${FILE}"
+FILE="1"
+FLAG="--window"
+PREF="window"
 
-mkdir -p $DIR
-gnome-screenshot $FLAGS
+HERE="$( cd "$(dirname "$0")" ; pwd -P )"
+EXEC=".screenshot_core"
+
+$HERE/$EXEC "$FILE" "$FLAG" "$PREF"
 
