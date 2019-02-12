@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# -- -- -- -- -- -- variables -- -- -- -- -- -- #
+INPUT="$1"
+
+# -- -- -- -- -- -- functions -- -- -- -- -- -- #
+function discordify () {
+    CHAR="$1"
+    echo "$CHAR" | sed -E \
+        -e 's/([a-z])/:regional_indicator_\1:/' \
+        -e 's/0/:zero:/' \
+        -e 's/1/:one:/' \
+        -e 's/2/:two:/' \
+        -e 's/3/:three:/' \
+        -e 's/4/:four:/' \
+        -e 's/5/:five:/' \
+        -e 's/6/:six:/' \
+        -e 's/7/:seven:/' \
+        -e 's/8/:eight:/' \
+        -e 's/9/:nine:/' \
+        -e 's/\?/:question:/' \
+        -e 's/!/:exclamation:/' \
+        -e 's/\s/   /' \
+        -e 's/^$/   /' \
+        -e 's/\+/:heavy_plus_sign:/'
+}
+
+# -- -- -- -- -- -- err check -- -- -- -- -- -- #
+if [ "$#" -ne "1" ] ; then
+    echo "Usage: ${0} <quoted string to modify>"
+    exit 1
+fi
+
+
+# -- -- -- -- -- -- teh logic -- -- -- -- -- -- #
+CHARACTERS="$( echo "${INPUT}" | sed -e 's/\(.\)/\1\n/g')"
+
+while read CHAR ; do
+    echo -n "$(discordify ${CHAR}) "
+done << EOF
+${CHARACTERS}
+EOF
