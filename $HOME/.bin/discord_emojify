@@ -5,7 +5,7 @@ INPUT="$1"
 
 # -- -- -- -- -- -- functions -- -- -- -- -- -- #
 function discordify () {
-    CHAR="$1"
+    CHAR="${1,,}"
     echo "$CHAR" | sed -E \
         -e 's/([a-z])/:regional_indicator_\1:/' \
         -e 's/0/:zero:/' \
