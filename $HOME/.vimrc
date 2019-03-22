@@ -96,8 +96,8 @@ inoremap qq <Esc>
 ":noremap <silent> <Leader>vs :<C-u>let @z=&so<CR>:set so=0 noscb<CR>:bo vs<CR>Ljzt:setl scb<CR><C-w>p:setl scb<CR>:let &so=@z<CR>
 
 " https://stackoverflow.com/questions/32154285/folding-expanding-and-colapsing-xml-tags-in-vim-xml-parsing
-augroup XML
-    autocmd!
-    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
-augroup END
+"augroup XML
+"    autocmd!
+"    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
+"augroup END
 
