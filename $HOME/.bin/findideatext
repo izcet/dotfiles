@@ -28,5 +28,5 @@ function has_text() {
 ALL_FILES="$(find "$SEARCH_DIR" -name "$FILE_REGEX")"
 
 export -f has_text
-realpath $ALL_FILES | xargs -I % bash -c 'has_text "'%'" "'$TEXT_REGEX'"'
+realpath $ALL_FILES | xargs -I % bash -c 'has_text "'%'" "'"$TEXT_REGEX"'"'
 
