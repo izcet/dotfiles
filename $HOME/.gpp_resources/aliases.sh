@@ -1,6 +1,8 @@
 
 GPP_EDITOR=vim
 
+alias gi="$GPP_EDITOR .gitignore"
+
 function gp () {
     BRANCH="$(git branch | grep "^\*" | cut -d' ' -f2)"
     if [ $# != 0 ] ; then
@@ -23,6 +25,7 @@ function gp () {
 }
 
 alias gu="git pull"
+alias gd="git diff"
 alias gs="git status"
 alias ga="git add ."
 

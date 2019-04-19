@@ -121,4 +121,3 @@ export GPP_NOCOLOR='[0m'
 source ${GPP_DIR}aliases.sh
 
 # End Git Push Plus
-

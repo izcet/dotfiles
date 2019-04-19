@@ -1,5 +1,2 @@
 [core]
-	excludesfile = ~/.gitignore_global
-[user]
-	email = isaacjrhett@gmail.com
-	name = Isaac Rhett
+	editor = vim

@@ -8,7 +8,7 @@
 DATE="$(date "+%Y-%b-%d-%a")"
 TIME="$(date "+%H:%M:%S")"
 PREFIX=""  # for optional future prefix
-OUTDIR="${HOME}/linux-screenshots/${DATE}"
+OUTDIR="${HOME}/Pictures/Screenshots/${DATE}"
 FLAG=""  # for optional debug flags
 
 
