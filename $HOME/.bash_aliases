@@ -40,3 +40,4 @@ alias pbpaste='xsel --clipboard --output'
 
 
 alias fsource="type -a"
+alias discordsongs="cat ~/songs | sort -R | sed 's/.*/-p &/'"
