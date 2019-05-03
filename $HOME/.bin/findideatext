@@ -20,8 +20,11 @@ function realpath () {
 function has_text() {
   FILE="$1"
   TEXT="$2"
-  if [ -n "$(grep "$TEXT" "$FILE")" ] ; then
-    idea "$FILE"
+  if [ -f "$FILE" ] ; then
+    if [ -n "$(grep "$TEXT" "$FILE")" ] ; then
+      echo "$FILE" >&2
+      idea "$FILE"
+    fi
   fi
 } 
 
