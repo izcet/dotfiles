@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+GOING=1
+SEC=0
+MIN=0
+while [ "$GOING" -eq "1" ] ; do
+ 
+  # beep beep beep!
+  # or more accurately,
+  # donk donk donk!
+  echo "\a\c"
+  sleep .20
+  echo "\a\c"
+  sleep .20
+  echo "\a\c"
+  sleep .20
+
+  # check for any keyboard input
+  read -t 0.40 -n 1 input
+  if [ $? = 0 ] ; then
+    GOING=0
+  fi
+
+  # timekeeping
+  SEC="$((SEC + 1))"
+  if [ "$SEC" -ge "60" ] ; then
+    MIN="$((MIN + 1))"
+    SEC=0
+  fi
+
+done
+
+# just a little guilt trip when you finally turn it off
+say "Was finished for $MIN minutes and $SEC seconds" &
