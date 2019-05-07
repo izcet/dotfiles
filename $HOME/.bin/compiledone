@@ -30,5 +30,7 @@ while [ "$GOING" -eq "1" ] ; do
 
 done
 
-# just a little guilt trip when you finally turn it off
-say "Was finished for $MIN minutes and $SEC seconds" &
+# just a little guilt trip if you don't turn it off quickly
+if [ "$SEC" -ge "5" ] || [ "$MIN" -ge "1" ] ; then
+  say "Was finished for $MIN minutes and $SEC seconds" &
+fi
