@@ -32,5 +32,5 @@ done
 
 # just a little guilt trip if you don't turn it off quickly
 if [ "$SEC" -ge "5" ] || [ "$MIN" -ge "1" ] ; then
-  say "Was finished for $MIN minutes and $SEC seconds" &
+  say -r 250 "Was finished for $MIN minutes and $SEC seconds" &
 fi
