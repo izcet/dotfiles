@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function get_random_num () {
+    echo "$(shuf -i 999999-9999999 -n 1)"
+}
+
+TITLE=""
+GOT_TITLE=0
+
+while [ "$GOT_TITLE" -eq "0" ] ; do
+
+    NUM="$(get_random_num)"
+    # beware the escaped piped newlines
+    TITLE="$(curl -s "https://www.imdb.com/title/tt$NUM/" |\
+        grep -m 1 \<title\> |\
+        sed -E 's/^.*>(.*)<.*$/\1/' |\
+        sed -E 's/&quot;//g')"
+
+    if [ "$TITLE" != "404 Error - IMDb" ] ; then
+        GOT_TITLE=1
+    fi
+done
+
+echo "$TITLE"
+
