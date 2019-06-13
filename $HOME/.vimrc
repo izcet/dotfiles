@@ -101,3 +101,5 @@ inoremap qq <Esc>
 "    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=999 foldminlines=0
 "augroup END
 
+" https://github.com/numirias/security/blob/master/doc/2019-06-04_ace-vim-neovim.md
+set modelines=0
