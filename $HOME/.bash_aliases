@@ -42,3 +42,4 @@ alias pbpaste='xsel --clipboard --output'
 alias fsource="type -a"
 alias discordsongs="cat ~/songs | sort -R | sed 's/.*/-p &/'"
 alias killminecraft="ps -aux | grep -i minecraft | grep -v grep | cut -f5 -d' ' | xargs -I % kill %"
+alias repdf="make re ; firefox *.pdf"

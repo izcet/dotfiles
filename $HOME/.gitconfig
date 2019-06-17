@@ -3,3 +3,5 @@
 [user]
 	name = Isaac Rhett
 	email = irhett@protonmail.com
+[credential]
+	helper = cache
