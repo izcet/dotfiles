@@ -7,3 +7,16 @@ function get_rand () {
     echo "$RAND"
 }
 
+function discordtrash () {
+    local ARG="$1"
+    local NUM=${ARG:-"1"}
+    local COUNT=0
+    local STRING=""
+    while [ $COUNT -lt $NUM ] ; do
+        local SEED="`head -c 9 /dev/random | base64`"
+        local COUNT="$((3 + $( get_rand 6 ) ))"
+        local TRASH="`echo $SEED | head -c $COUNT`"
+        STRING="$STRING\n -p $TRASH"
+    done
+    echo "$STRING" | pbcopy
+}
