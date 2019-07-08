@@ -12,7 +12,7 @@ function discordtrash () {
     local NUM=${ARG:-"1"}
     local COUNT=0
     local STRING=""
-    while [ $COUNT -lt $NUM ] ; do
+    while [ "$COUNT" -lt "$NUM" ] ; do
         local SEED="`head -c 9 /dev/random | base64`"
         local COUNT="$((3 + $( get_rand 6 ) ))"
         local TRASH="`echo $SEED | head -c $COUNT`"
