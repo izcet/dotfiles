@@ -16,7 +16,8 @@ function discordtrash () {
         local SEED="`head -c 9 /dev/random | base64`"
         local COUNT="$((3 + $( get_rand 6 ) ))"
         local TRASH="`echo $SEED | head -c $COUNT`"
-        STRING="-p $TRASH\n$STRING"
+        STRING="-p $TRASH
+        $STRING"
     done
     echo "$STRING" | pbcopy
 }
