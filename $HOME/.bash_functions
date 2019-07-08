@@ -9,18 +9,28 @@ function get_rand () {
 
 function discordtrash () {
     local ARG="$1"
-    local NUM=${ARG:-"1"}
+    local TOTAL=${ARG:-"1"}
+    
     local COUNT=0
     local STRING=""
-    while [ "$COUNT" -lt "$NUM" ] ; do
-        echo -e "$COUNT $STRING"
-        local SEED="`head -c 9 /dev/random | base64`"
-        local CHARS="$((3 + $( get_rand 6 ) ))"
-        local TRASH="`echo $SEED | head -c $CHARS`"
+    local TRASH=""
+    local SEED=0
+    local CHARS=0
+
+    local MAX=16
+    if [ "$TOTAL" -gt "$MAX" ] ; then
+        echo "Number of songs truncated to $MAX to have a reasonable response time."
+        TOTAL="$MAX"
+    fi
+    
+    while [ "$COUNT" -lt "$TOTAL" ] ; do
+        SEED="`head -c 9 /dev/random | base64`"
+        CHARS="$((3 + $( get_rand 6 ) ))"
+        TRASH="`echo $SEED | head -c $CHARS`"
         
-        STRING="-p $TRASH\n$STRING"
+        STRING="$STRING\n-p $TRASH"
         
         COUNT=$(($COUNT + 1))
     done
-    echo "$STRING" #| pbcopy
+    echo -e "$STRING" | pbcopy
 }
