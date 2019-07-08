@@ -14,10 +14,9 @@ function discordtrash () {
     local STRING=""
     while [ "$COUNT" -lt "$NUM" ] ; do
         local SEED="`head -c 9 /dev/random | base64`"
-        local COUNT="$((3 + $( get_rand 6 ) ))"
-        local TRASH="`echo $SEED | head -c $COUNT`"
-        STRING="-p $TRASH
-        $STRING"
+        local CHARS="$((3 + $( get_rand 6 ) ))"
+        local TRASH="`echo $SEED | head -c $CHARS`"
+        STRING="-p $TRASH\n$STRING"
     done
     echo "$STRING" | pbcopy
 }
