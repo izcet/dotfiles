@@ -18,5 +18,5 @@ function discordtrash () {
         local TRASH="`echo $SEED | head -c $CHARS`"
         STRING="-p $TRASH\n$STRING"
     done
-    echo "$STRING" | pbcopy
+    echo "$STRING" #| pbcopy
 }
