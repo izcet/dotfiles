@@ -12,6 +12,7 @@
 
 # custom
 .bash_aliases
+.bash_functions
 .bin
 .env
 .gpp_resources  # directory
