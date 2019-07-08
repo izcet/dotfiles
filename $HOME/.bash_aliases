@@ -41,6 +41,6 @@ alias pbpaste='xsel --clipboard --output'
 
 alias fsource="type -a"
 alias discordsongs="cat ~/songs | sort -R | sed 's/.*/-p &/'"
-alias discordtrash="echo \"-p `head -c 20 /dev/random | base64 | head -c \\\"\$\(\(3 + `get_rand 6`\)\)\\\"`\""
+alias discordtrash="echo \"-p \`head -c 20 /dev/random | base64 | head -c \"\$((3 + `get_rand 6`))\"\`\" | pbcopy"
 alias killminecraft="ps -aux | grep -i minecraft | grep -v grep | cut -f5 -d' ' | xargs -I % kill %"
 alias repdf="make re ; firefox *.pdf"
