@@ -37,3 +37,10 @@ function sbt(){
 	fi
 }
 
+function afk() {
+  local MINS="${1:-30}"
+  local DATE="$(date -v "+${MINS}M" +'%H:%M') EST"
+
+  echo "/status :saucer: AFK - will be back around ${DATE}"
+}
+  
