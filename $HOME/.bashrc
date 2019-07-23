@@ -40,7 +40,8 @@ function sbt(){
 function afk() {
   local MINS="${1:-30}"
   local DATE="$(date -v "+${MINS}M" +'%H:%M') EST"
-  local MESG="/status :saucer: AFK - will be back around ${DATE}"
+  local MESG="/status :flying_saucer: AFK - will be back around ${DATE}"
+  
   echo "$MESG" | pbcopy
   echo "'$MESG' added to clipboard"
 }
