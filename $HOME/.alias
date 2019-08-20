@@ -31,4 +31,4 @@ alias ll="ls -la"
 alias init_project="$HOME/personal/environ_setup/init_project.sh"
 alias sayclip="pbpaste | say -v samantha -r 65"
 alias repdf="make re ; open *.pdf"
-
+alias fsource="type"
