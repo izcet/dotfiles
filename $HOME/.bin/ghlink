@@ -1,28 +1,44 @@
 #!/bin/bash
 
+# use case:
+# so say I want to share a really important file in a repo
+# but navigating to that file in github is a pain because of a lot of nested directories
+
+# This script converts the local file
+# <local andromeda project root>/andromeda-model/src/main/scala/com/lookout/andromeda/ServiceClass.scala
+# to the github link
+# https://source.corp.lookout.com/services/andromeda/blob/master/andromeda-model/src/main/scala/com/lookout/andromeda/ServiceClass.scala
+
+# I can even reference a specific line by running the command with an additional param
+# bash~$> !! 25
+# https://source.corp.lookout.com/services/andromeda/blob/master/andromeda-model/src/main/scala/com/lookout/andromeda/ServiceClass.scala#L25
+
+
 # Modify this to your local setup
 # it makes the assumption that all of your repos from Lookout are in the same root folder
+# for example, all of my lookout projects are at
 REPO_DIR="/Users/isaac.rhett/lookout/corp"
+# so https://source.corp.lookout.com/services/andromeda
+# is cloned to /Users/isaac.rhett/lookout/corp/services/andromeda/
+
+GH_PREFIX="https://source.corp.lookout.com"
 BRANCH="master"
 
 # Don't touch this part
-REGEX_DELIM=":"
-GH_PREFIX="https://source.corp.lookout.com"
-GH_TEAM_REGEX="s${REGEX_DELIM}${REPO_DIR}/([^/]+)/.*${REGEX_DELIM}\1${REGEX_DELIM}"
-GH_PROJECT_REGEX="s${REGEX_DELIM}${REPO_DIR}/[^/]+/([^/]+)/.*${REGEX_DELIM}\1${REGEX_DELIM}"
-GH_FILE_REGEX="s${REGEX_DELIM}${REPO_DIR}/[^/]+/[^/]+/(.*)${REGEX_DELIM}\1${REGEX_DELIM}"
+SED_DELIM=":"
+TEAM_REGEX="s${SED_DELIM}${REPO_DIR}/([^/]+)/.*${SED_DELIM}\1${SED_DELIM}"
+PROJECT_REGEX="s${SED_DELIM}${REPO_DIR}/[^/]+/([^/]+)/.*${SED_DELIM}\1${SED_DELIM}"
+FILE_REGEX="s${SED_DELIM}${REPO_DIR}/[^/]+/[^/]+/(.*)${SED_DELIM}\1${SED_DELIM}"
 
-
-
-FILE=""
-LINE=""
-LINE_TO=""
-if [ $# -gt 3 -o $# -lt 1 ] ; then
+# bounds checking - $# is number of args
+if [ $# -lt 1 -o $# -gt 3 ] ; then
   echo "Usage: $0 <file> [line [line-to]]"
   exit
 fi
 
 FILE="$1"
+LINE=""
+LINE_TO=""
 
 if [ $# -ge 2 ] ; then
   LINE="#L$2"
@@ -32,11 +48,15 @@ if [ $# -eq 3 ] ; then
   LINE_TO="-L$3"
 fi
 
-GH_TEAM="$(echo $FILE | sed -E "$GH_TEAM_REGEX")"
-GH_PROJECT="$(echo $FILE | sed -E "$GH_PROJECT_REGEX")"
-GH_FILE="$(echo $FILE | sed -E "$GH_FILE_REGEX")"
+GH_TEAM="$(echo $FILE | sed -E "$TEAM_REGEX")"
+GH_PROJECT="$(echo $FILE | sed -E "$PROJECT_REGEX")"
+GH_FILE="$(echo $FILE | sed -E "$FILE_REGEX")"
 
 URL="${GH_PREFIX}/${GH_TEAM}/${GH_PROJECT}/blob/${BRANCH}/${GH_FILE}${LINE}${LINE_TO}"
 echo "$URL"
+
+# This will automagically put the url in your clipboard, overwriting whatever's there
+# but since what's there is most likely the path you want to convert,
+# I don't think it's that big of an issue
 echo "$URL" | pbcopy
 
