@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Modify this to your local setup
+# it makes the assumption that all of your repos from Lookout are in the same root folder
+REPO_DIR="/Users/isaac.rhett/lookout/corp"
+BRANCH="master"
+
+# Don't touch this part
+REGEX_DELIM=":"
+GH_PREFIX="https://source.corp.lookout.com"
+GH_TEAM_REGEX="s${REGEX_DELIM}${REPO_DIR}/([^/]+)/.*${REGEX_DELIM}\1${REGEX_DELIM}"
+GH_PROJECT_REGEX="s${REGEX_DELIM}${REPO_DIR}/[^/]+/([^/]+)/.*${REGEX_DELIM}\1${REGEX_DELIM}"
+GH_FILE_REGEX="s${REGEX_DELIM}${REPO_DIR}/[^/]+/[^/]+/(.*)${REGEX_DELIM}\1${REGEX_DELIM}"
+
+
+
+FILE=""
+LINE=""
+LINE_TO=""
+if [ $# -gt 3 -o $# -lt 1 ] ; then
+  echo "Usage: $0 <file> [line [line-to]]"
+  exit
+fi
+
+FILE="$1"
+
+if [ $# -ge 2 ] ; then
+  LINE="#L$2"
+fi
+
+if [ $# -eq 3 ] ; then
+  LINE_TO="-L$3"
+fi
+
+GH_TEAM="$(echo $FILE | sed -E "$GH_TEAM_REGEX")"
+GH_PROJECT="$(echo $FILE | sed -E "$GH_PROJECT_REGEX")"
+GH_FILE="$(echo $FILE | sed -E "$GH_FILE_REGEX")"
+
+URL="${GH_PREFIX}/${GH_TEAM}/${GH_PROJECT}/blob/${BRANCH}/${GH_FILE}${LINE}${LINE_TO}"
+echo "$URL"
+echo "$URL" | pbcopy
+
