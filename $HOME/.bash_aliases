@@ -2,7 +2,7 @@
 
 # simple colorizations
 #alias ls="ls -G"
-alias grep="grep --color=always"
+alias grep="grep --color=auto"
 if [ -n "$(which colordiff)" ] ; then
 	alias diff="colordiff"
 fi
