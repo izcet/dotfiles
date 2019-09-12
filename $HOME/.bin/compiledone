@@ -32,5 +32,17 @@ done
 
 # just a little guilt trip if you don't turn it off quickly
 if [ "$SEC" -ge "5" ] || [ "$MIN" -ge "1" ] ; then
-  say -r 250 "Was finished for $MIN minutes and $SEC seconds" &
+  local OPT_MINUTES=""
+  if [ "$MIN" -ge "1" ] ; then
+    local MS=""
+    if [ "$MIN" -gt "1" ] ; then
+      MS="s"
+    fi
+    OPT_MINUTES="$MIN minute$MS and"
+  fi
+  local SS=""
+  if [ "$SEC" -eq "0" ] || [ "$SEC" -gt "1" ] ; then
+    SS="s"
+  fi
+  say -r 250 "Was finished for $OPT_MINUTES $SEC second$SS" &
 fi
