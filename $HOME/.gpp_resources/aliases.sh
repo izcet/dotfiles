@@ -24,6 +24,7 @@ function gp () {
 	echo -n "$GPP_NOCOLOR"
 }
 
+alias gb="git branch"
 alias gu="git pull"
 alias gd="git diff"
 alias gs="git status"
