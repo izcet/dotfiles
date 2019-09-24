@@ -12,7 +12,12 @@ TEXT_REGEX="$3"
 function realpath () {
   while [ "$#" -gt "0" ] ; do
     TARGET="$1"
-    echo -e "$(cd "$(dirname "$TARGET")"; pwd -P)/$(basename "$TARGET")"
+    FULLTARGET="$(cd "$(dirname "$TARGET")"; pwd -P)/$(basename "$TARGET")"
+    if [ -n "$(echo "$TARGET" | grep -e '"' -e "'")" ] ; then
+      echo "OMIT -- BAD FILENAME $FULLTARGET" >&2
+    else
+      echo -e "$FULLTARGET"
+    fi
     shift
   done
 }
