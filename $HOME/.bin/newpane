@@ -1,12 +1,14 @@
 #!/bin/bash
 
+SESSION="_user_$(head -c 9 /dev/urandom | base64)"
+
 OSA_SCRIPT=`cat << EOF
 tell application "iTerm"
   tell current window
     tell current session of current tab
-      set _new_session to split horizontally with default profile
+      set $SESSION to split horizontally with default profile
     end tell
-    tell _new_session
+    tell $SESSION
       write text "$@"
     end tell
   end tell
