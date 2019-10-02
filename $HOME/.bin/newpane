@@ -1,0 +1,16 @@
+#!/bin/bash
+
+OSA_SCRIPT=`cat << EOF
+tell application "iTerm"
+  tell current window
+    tell current session of current tab
+      set _new_session to split horizontally with default profile
+    end tell
+    tell _new_session
+      write text "$@"
+    end tell
+  end tell
+end tell
+EOF
+`
+osascript -e "$OSA_SCRIPT"
