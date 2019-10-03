@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ] ; then
+  echo "Usage: $0 <regex> <file>"
+  exit
+fi
+
+REGEX="$1"
+FILE="$2"
+
+if [ ! -f "$FILE" ] ; then
+  echo "Error: '$FILE' is not a valid file"
+  exit 1
+fi
+
+tail -n +`grep -n -m 1 "$REGEX" "$FILE" | cut -f1 -d:` "$FILE"

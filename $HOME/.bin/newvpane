@@ -6,7 +6,7 @@ OSA_SCRIPT=`cat << EOF
 tell application "iTerm"
   tell current window
     tell current session of current tab
-      set $SESSION to split horizontally with default profile
+      set $SESSION to split vertically with default profile
     end tell
     tell $SESSION
       write text "$@"
