@@ -1,0 +1,48 @@
+#!/bin/bash
+
+function debug () {
+  echo "$@" >&2
+}
+
+function getobject () {
+  local OBJ=$1
+
+  local AWS_HTTPS_PREFIX="https://s3.amazonaws.com/"
+  local AWS_S3_PREFIX="s3://"
+  local NOTE=""
+
+  if [ -n "`echo "$OBJ" | grep "^$AWS_HTTPS_PREFIX"`" ] ; then
+    local TEMP="`echo "$OBJ" | sed "s?$AWS_HTTPS_PREFIX?$AWS_S3_PREFIX?" `"
+    #debug "$OBJ renamed to $TEMP"
+    OBJ="$TEMP"
+  fi
+
+  local FILE="`echo "$OBJ" | sed 's:.*/::'`"
+
+  if [ -f $FILE ] ; then
+    debug "$FILE exists. Skipping $OBJ"
+  else
+    aws s3 cp "$OBJ" "$FILE"
+    if [ "$?" -ne "0" ] ; then
+      debug "  for $OBJ"
+    fi
+  fi
+}
+
+if [ -z "$AWS_PROFILE" ] ; then
+  debug "AWS_PROFILE must be set"
+  exit 1
+fi
+
+if [ "$#" -eq "0" ] ; then
+  while read URI ; do 
+    getobject "$URI"
+  done
+else 
+  while [ -n "$1" ] ; do
+    URI="$1"
+    getobject "$URI"
+    shift
+  done
+fi
+
