@@ -1,0 +1,18 @@
+#!/bin/bash
+
+COMMAND=$@
+
+OSA_SCRIPT=`cat << EOF
+tell application "iTerm"
+  tell current window
+    tell last session of current tab
+      split vertically with default profile
+    end tell
+    tell last session of current tab
+      write text "$COMMAND"
+    end tell
+  end tell
+end tell
+EOF
+`
+osascript -e "$OSA_SCRIPT"
