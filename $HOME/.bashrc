@@ -46,3 +46,4 @@ function afk() {
   echo "'$MESG' added to clipboard"
 }
   
+export JAVA_TOOL_OPTIONS="-XX:MaxJavaStackTraceDepth=-1"
