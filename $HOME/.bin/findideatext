@@ -26,7 +26,7 @@ function has_text() {
   FILE="$1"
   TEXT="$2"
   if [ -f "$FILE" ] ; then
-    if [ -n "$(grep "$TEXT" "$FILE")" ] ; then
+    if [ -n "$(grep -i "$TEXT" "$FILE")" ] ; then
       echo "$FILE" >&2
       idea "$FILE"
     fi
