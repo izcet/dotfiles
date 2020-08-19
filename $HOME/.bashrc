@@ -47,3 +47,8 @@ function afk() {
 }
   
 export JAVA_TOOL_OPTIONS="-XX:MaxJavaStackTraceDepth=-1"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export JAVA_HOME=/Users/isaac.rhett/openjdk/jdk8u212-b03/Contents/Home
+
