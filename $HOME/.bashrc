@@ -9,7 +9,6 @@ if [ -f "$BACKUP" ] ; then
 	/bin/zsh "$BACKUP"
 fi
 
-
 # Git Push Plus
 # Author: Isaac Rhett
 # Repo: https://github.com/izcet/gitpushplus
@@ -52,10 +51,11 @@ export JAVA_TOOL_OPTIONS="-XX:MaxJavaStackTraceDepth=-1"
 echo 'export PATH="/usr/local/sbin:$PATH"' >> /Users/isaac.rhett/.bash_profile
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 export JAVA_HOME=/Users/isaac.rhett/openjdk/jdk8u212-b03/Contents/Home
 
 export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/libi -L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include -I/usr/local/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig:/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
