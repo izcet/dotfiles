@@ -5,4 +5,4 @@ set -euo pipefail
 THISDIR="`pwd`"
 CHANGES="`git status | grep "^\s.*:" | sed 's/^.*: *//'`"
 
-echo "$CHANGES" | xargs -I % idea "$THISDIR/%"
+echo "$CHANGES" 
