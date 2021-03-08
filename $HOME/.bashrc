@@ -48,7 +48,7 @@ function afk() {
 export JAVA_TOOL_OPTIONS="-XX:MaxJavaStackTraceDepth=-1"
 
 # brew
-echo 'export PATH="/usr/local/sbin:$PATH"' >> /Users/isaac.rhett/.bash_profile
+# echo 'export PATH="/usr/local/sbin:$PATH"' >> /Users/isaac.rhett/.bash_profile
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export JAVA_HOME=/Users/isaac.rhett/openjdk/jdk8u212-b03/Contents/Home
