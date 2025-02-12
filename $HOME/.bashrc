@@ -23,7 +23,7 @@ function icy () {
     sed 's/^\(\s\+\)//' |\
     cut -f1 -d' ' |\
     xargs -I % kill -9 -- %
-  }
+}
 export -f icy
 
 export PATH="$PATH:~/.bin/"
